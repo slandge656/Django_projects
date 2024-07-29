@@ -1,0 +1,60 @@
+/* Home.html */
+
+.navbar-nav{
+    margin-left: 20%;
+}
+.container-fluid{
+    padding: 10px;
+}
+.navbar-brand{
+    margin-left: 10%;
+}
+.nav-link{
+    font-weight: 700;
+    color: black;
+}
+.heading{
+    text-align: center;
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.img-content{
+    margin-top: 20px;
+    margin-left: 60px;
+}
+.category-container{
+    background-color: #E2DEF5;
+    margin: 30px;
+}
+h1,h3{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.category-col{
+    border: 1px solid #fff;
+    background-color: #fff;
+    border-radius: 5px;
+    height: 150px;
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    
+    
+}
+button{
+    color: #fff;
+    background-color: #EC268F;
+    border-radius: 5px;
+    border: 0px;
+    height: 39px;
+}
+.category-row{
+    border: 0px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin: 20px;
+    padding: 5px;
+    
+}
+.category-inner{
+    margin-bottom: 20px;
+}
