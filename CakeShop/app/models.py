@@ -8,9 +8,15 @@ class CustomUser(models.Model):
     Mobile_No=models.CharField(max_length=255,default='')
     Email=models.EmailField(max_length=255,default='')
     Password=models.CharField(max_length=255,default='')
+    RE_Password=models.CharField(max_length=255,default='')
 
     def __str__(self) -> str:
-        return self.Mobile_No
+        return f'{self.First_Name}  {self.Last_Name}'
+    
+    def register_user(self):
+        return self.save()
+
+
 
 class Category(models.Model):
     category_name=models.CharField(max_length=30,default='')

@@ -1,12 +1,61 @@
 from django.shortcuts import render,redirect
-from .models import Products,Category
+from .models import Products,Category,CustomUser
 from django.contrib.sessions.models import Session
-
+from django.contrib import messages
+from django.contrib.auth import login,logout
 # Create your views here.
 def User_Signup(request):
+    if request.method=="POST":
+        First_Name=request.POST['First_Name']
+        Last_Name=request.POST['Last_Name']
+        Mobile_No=request.POST['Mobile_No']
+        Email=request.POST['Email']
+        Password=request.POST['Password']
+        RE_Password=request.POST['RE_Password']
+
+        user_input={
+            'First_Name':First_Name,
+            'Last_Name':Last_Name,
+            'Mobile_No':Mobile_No,
+            'Email':Email,
+            'Password':Password,
+            'RE_Password':RE_Password
+        }
+
+        if len(Mobile_No) != 10:
+            messages.warning(request, "Enter valid Mobile No.")
+            return render(request,'app/signup.html',user_input)
+        elif Password != RE_Password:
+            messages.warning(request, "Enter correct Password.")
+            return render(request,'app/signup.html',user_input)   
+        else:
+            data=CustomUser(
+                First_Name=First_Name,
+                Last_Name=Last_Name,
+                Mobile_No=Mobile_No,
+                Email=Email,
+                Password=Password,
+                RE_Password=RE_Password
+            )
+            data.register_user()
+            messages.success(request,'Account Created...')
     return render(request,'app/signup.html')
 
+
 def User_Login(request):
+    if request.method=='POST':
+        Mobile_No=request.POST['Mobile_No']
+        print(Mobile_No)
+        print(type(Mobile_No))
+        user=CustomUser.objects.filter(Mobile_No = Mobile_No)
+
+        
+        if user:
+            messages.success(request,'Success...')
+            return redirect('home')
+        else:
+            messages.error(request,'Invalid Mobile No...')
+
     return render(request,'app/login.html')
 def Home(request):
     if request.method =='POST':

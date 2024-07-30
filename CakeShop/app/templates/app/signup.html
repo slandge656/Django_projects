@@ -6,17 +6,28 @@
     <div class="col-8" style="margin-top: 35px;">
         <a class="navbar-brand" href="#"><img src="{% static 'app/images/logo.png' %}" width='200px' height='50px'/></a>
         <a href="{% url 'login' %}"><button type="button" style="position: absolute;left: 1000px;width: 100px;height: 40px;">Login</button></a>
-        <div class="col-6" style="position: absolute;top: 15rem;left: 20rem;" >
-            <h3>Let's Create Account!</h3>
-            <span>Fill up the below details to create account</span>
-            <input name="First_Name" type="text" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="First name">
-            <input name="Last_Name" type="text" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Last name">
-            <input name="Mobile_No" type="text" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Mobile No.">
-            <input name="Email" type="Email" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Email">
-            <input name="Password" type="Password" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Password">
-            <button type="submit" style="width: 60%;margin-top: 30px;">Sign Up</button>
-            <h6 style="text-align: center;width: 60%;margin-top: 10px;">Already have account? Log in</h6>
-        </div>
+        <form method='POST' action='{% url 'signup' %}'>
+            {% csrf_token %}
+            <div class="col-6" style="position: absolute;top: 10rem;left: 20rem;" >
+                <h3>Let's Create Account!</h3>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <span>Fill up the below details to create account</span>
+                <input  name="First_Name" type="text" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="First name" value='{{user_input.First_Name}}'>
+                <input  name="Last_Name" type="text" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Last name" value='{{user_input.Last_Name}}'>
+                <input required name="Mobile_No" type="text" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Mobile No." value='{{user_input.Mobile_No}}'>
+                <input required name="Email" type="Email" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Email" value='{{user_input.Email}}'>
+                <input required name="Password" type="Password" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="Password" value='{{user_input.Password}}'>
+                <input required name="RE_Password" type="Password" class="form-control" style="width: 60%;height: 50px;margin-top: 30px;" placeholder="RE_Password" value='{{user_input.RE_Password}}'>
+                <button type="submit" style="width: 60%;margin-top: 30px;">Sign Up</button>
+                <h6 style="text-align: center;width: 60%;margin-top: 10px;">Already have account? Log in</h6>
+            </div>
+        </form>
     </div>
     <div class="col-4">
         <img src="{% static 'app/images/login-image.png' %}" alt="" width="615.77px" height="1000px">

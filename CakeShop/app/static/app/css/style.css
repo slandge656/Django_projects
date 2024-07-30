@@ -59,3 +59,7 @@ button{
 
 
 /* Login.html */
+.messages{
+    width: 60%;
+    background-color: #E2DEF5 ;
+}
