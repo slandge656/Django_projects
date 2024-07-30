@@ -17,6 +17,7 @@
           <a class="nav-link disabled" aria-disabled="true">Our History</a>
           <a class="nav-link disabled" aria-disabled="true">Become a Franchise</a>
           <a class="nav-link disabled" aria-disabled="true">Blogs</a>
+          <a href="{% url 'login' %}"  class="nav-link" aria-disabled="true">Login</a>
         </div>
       </div>
     </div>
@@ -65,8 +66,30 @@
 
   <div class="category-container">
     <div class="category-inner">
-        <h1 style="text-align: center;">Shop By Bestseller <span style="color: #EC268F;">Categories</span></h1>
+        <h1 style="text-align: center;padding: 20px;">Shop By Bestseller <span style="color: #EC268F;">Categories</span></h1>
         <div class="row category-row">
+            
+            <div class="col-md-4 category-col">
+                <h3 style="float: inline-end;margin-top: 7%;">Birthday Surprises</h3>
+                
+                <div style="text-align: center;margin-top: 20%;text-align: end;">
+                    <a href="#"><button type="submit">View All</button></a>
+                </div>
+            </div> 
+
+            <div class="col-md-4 category-col">
+                <h3 style="float: inline-end;margin-top: 7%;">Anniversary Surprises</h3>
+                <div style="text-align: center;margin-top: 20%;text-align: end;">
+                    <a href="#"><button type="submit">View All</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="category-container1" style="background-color: #E2DEF5;margin: 30px;">
+    <div class="category-inner1">
+        <h1 style="text-align: center;">Shop By <span style="color: #EC268F;">Categories</span></h1>
+        <div class="row category-row1">
             {% for category in categories %}
             <div class="col-9">
                 <h3 style="margin-left: 30px;">{{category.category_name}}</h3>
@@ -75,37 +98,36 @@
                 <a href="/?category={{category.id}}"><button type="submit">View All</button></a>
             </div>
             {% endfor %}
-            <!-- <div class="col-md-4 category-col">
-                <h3 style="float: inline-end;margin-top: 7%;">Birthday Surprises</h3>
-                
-                <div style="text-align: center;margin-top: 20%;text-align: end;">
-                    <a href="{/?category={}}"><button type="submit">View All</button></a>
-                </div>
-            </div> -->
-
-            <!-- <div class="col-md-4 category-col">
-                <h3 style="float: inline-end;margin-top: 7%;">Anniversary Surprises</h3>
-                <div style="text-align: center;margin-top: 20%;text-align: end;">
-                    <a href="{/?category={}}"><button type="submit">View All</button></a>
-                </div>
-            </div> -->
         </div>
     </div>
   </div>
-<div class="row" style="margin-left: 20px;margin-right: 0px;">
+<div class="row" style="margin-left: 20px;margin-right: 0px;background-color: #E2DEF5;">
+  {% if cat_name %}
+    <h1 style="text-align: center;padding: 20px;color: #EC268F;">{{cat_name}}</h1> 
+  {% else %}
+    <h1 style="text-align: center;padding: 20px;">All Cakes</h1> 
+  {% endif %}  
   {% for product in products %}
-    
+   
     <div class="col cakeby-category">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem;margin-bottom:10px;">
             <img src="{{ product.image.url }}" class="card-img-top" alt="..." width="286px" height="190.58px">
             <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text">{{product.description}}</p>
-            <a href="#" class="btn"><img src="{% static 'app/images/cart_icon_dark.png' %}"/></a>
+            
+              <form action="{% url 'home' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}" />
+                <button type="submit" class="btn">
+                    <img src="{% static 'app/images/cart_icon_dark.png' %}" alt="Add to Cart"/>
+                </button>
+              </form>
+
             </div>
         </div>
     </div>
-
+  
   {% endfor %}
 </div>
 {% endblock content %}

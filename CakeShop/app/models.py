@@ -1,6 +1,17 @@
 from django.db import models
 
 # Create your models here.
+
+class CustomUser(models.Model):
+    First_Name=models.CharField(max_length=255,default='')
+    Last_Name=models.CharField(max_length=255,default='')
+    Mobile_No=models.CharField(max_length=255,default='')
+    Email=models.EmailField(max_length=255,default='')
+    Password=models.CharField(max_length=255,default='')
+
+    def __str__(self) -> str:
+        return self.Mobile_No
+
 class Category(models.Model):
     category_name=models.CharField(max_length=30,default='')
 
@@ -25,6 +36,6 @@ class Products(models.Model):
     @staticmethod
     def get_products_by_category(category_id):
         if category_id:
-            return Products.objects.filter(id=category_id)
+            return Products.objects.filter(category_name=category_id)
         else:
             return  Products.objects.all()

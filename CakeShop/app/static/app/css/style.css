@@ -21,6 +21,7 @@
 .img-content{
     margin-top: 20px;
     margin-left: 60px;
+    text-align: center;
 }
 .category-container{
     background-color: #E2DEF5;
@@ -36,9 +37,7 @@ h1,h3{
     height: 150px;
     margin-left: 10%;
     margin-top: 20px;
-    margin-bottom: 30px;
-    
-    
+    margin-bottom: 30px;  
 }
 button{
     color: #fff;
@@ -50,11 +49,13 @@ button{
 .category-row{
     border: 0px;
     border-radius: 5px;
-    background-color: #fff;
     margin: 20px;
     padding: 5px;
     
 }
-.category-inner{
-    margin-bottom: 20px;
+.category-container1{
+    background-color: #E2DEF5;
 }
+
+
+/* Login.html */
