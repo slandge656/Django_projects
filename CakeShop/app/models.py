@@ -9,7 +9,7 @@ class CustomUser(models.Model):
     Email=models.EmailField(max_length=255,default='')
     Password=models.CharField(max_length=255,default='')
     RE_Password=models.CharField(max_length=255,default='')
-
+    last_login_time = models.DateTimeField(null=True, blank=True)
     def __str__(self) -> str:
         return f'{self.First_Name}  {self.Last_Name}'
     
